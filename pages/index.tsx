@@ -15,6 +15,7 @@ const Home = (): JSX.Element => {
       <Head>
         <title>Create Next Home</title>
         <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
       <main>

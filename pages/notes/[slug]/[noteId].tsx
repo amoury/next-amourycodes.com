@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Head from 'next/head'
 import { getNote, getNotes } from '@utils/api';
 import { getFormattedId, slugifyTitle } from '@utils/helpers';
@@ -7,6 +8,11 @@ import styled from 'styled-components';
 
 const Note = ({ note }): JSX.Element => {
   if(!note) return null;
+  
+  // useEffect(() => {
+  //   console.log(window.matchMedia('(prefers-color-scheme: dark)'));
+  // }, [])
+
   return (
     <div>
       <Head>
@@ -36,8 +42,8 @@ const Content = styled.article`
   h1.notion-h1, 
   h2.notion-h2, 
   h3.notion-h3 {
-    font-family: 'MaisonNeue-Bold';
-    color: #233143;
+    font-family: ${({ theme }) => theme.fonts.heading };
+    color: ${({ theme }) => theme.colors.heading };
   }
 
   h1.notion-h1 {
@@ -53,12 +59,12 @@ const Content = styled.article`
   }
 
   p.notion-text {
-    font-family: 'Merriweather-Regular';
+    font-family: ${({ theme }) => theme.fonts.text };
     font-size: 18px;
     line-height: 38px;
     margin-bottom: 32px;
     letter-spacing: 0.25px;
-    color: #334259;
+    color: ${({ theme }) => theme.colors.text};
 
     @media (min-width: 1024px) {
       font-size: 20px;
