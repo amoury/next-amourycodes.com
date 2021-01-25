@@ -29,7 +29,7 @@ const Note = ({ note }): JSX.Element => {
 const Content = styled.article`
   max-width: 90%;
   display: flex;
-  margin: 100px auto 50px;
+  margin: 70px auto 50px;
 
   @media (min-width: 1024px) {
     max-width: 80%;

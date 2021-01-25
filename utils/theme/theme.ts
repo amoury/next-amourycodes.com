@@ -5,7 +5,8 @@ const lightTheme = {
     primary: '#E63A2D',
     secondary: '#F6EEE3',
     text: '#334259',
-    heading: '#233143'
+    heading: '#233143',
+    background: '#F1F1F1'
   }
 }
 
@@ -21,13 +22,15 @@ const darkTheme = {
 const theme: TTheme = {
   fonts: {
     heading: 'MaisonNeue-Bold',
-    text: 'Merriweather-Regular'
+    text: 'Merriweather-Regular',
+    secondary: 'FrieghtSans-Regular',
   },
   colors: {
     primary: '#E63A2D',
     secondary: '#F6EEE3',
     text: '#334259',
-    heading: '#233143' 
+    heading: '#233143',
+    background: '#F1F1F1',
   }
 }
 

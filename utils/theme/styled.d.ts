@@ -3,6 +3,7 @@ import 'styled-components';
 type TFonts = {
   heading: string;
   text: string;
+  secondary: string;
 }
 
 type TColors = {
@@ -10,6 +11,7 @@ type TColors = {
   secondary: string;
   text: string;
   heading: string;
+  background: string;
 }
 
 declare module 'styled-components' {

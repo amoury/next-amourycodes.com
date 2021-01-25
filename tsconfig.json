@@ -12,7 +12,8 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "@utils/*": ["utils/*"]
+      "@utils/*": ["utils/*"],
+      "@components/*": ["components/*"]
     },
     "noEmit": true,
     "esModuleInterop": true,
