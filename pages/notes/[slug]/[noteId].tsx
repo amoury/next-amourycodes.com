@@ -8,6 +8,7 @@ import styled from 'styled-components';
 
 const Note = ({ note }): JSX.Element => {
   if(!note) return null;
+  const title = note[Object.keys(note)[0]]?.value.properties.title[0][0];
   
   // useEffect(() => {
   //   console.log(window.matchMedia('(prefers-color-scheme: dark)'));
@@ -16,7 +17,7 @@ const Note = ({ note }): JSX.Element => {
   return (
     <div>
       <Head>
-        <title>My page title</title>
+        <title>{`${title} | Amourycodes`}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Content>
@@ -32,7 +33,7 @@ const Content = styled.article`
   margin: 70px auto 50px;
 
   @media (min-width: 1024px) {
-    max-width: 80%;
+    max-width: 1200px;
   }
 
   .notion {

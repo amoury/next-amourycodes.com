@@ -14,22 +14,24 @@ const Nav = (): JSX.Element => {
 
   return (
     <StyledNav>
-      <div>
-        <Link href='/'>
-          <a>
-            <svg width="40px" height="40px" viewBox="0 0 182.33 182.33"><path fill="none" stroke={heading} strokeMiterlimit="10" strokeWidth="12" d="M3.5 3.5h175.33v175.33H3.5z"></path><path d="M95.7 170.86l35.56-79.7 35.68 79.7h-16.05l-19.63-43.83-19.5 43.83z" fill={heading}></path></svg>
-          </a>
-        </Link>
-      </div>
-      <div>
-        <Menu>
-          { menuItems.map(item => (
-            <Link key={item.id} href={item.url}>
-              <a><li>{item.name}</li></a>
-            </Link>
-          ))}
-        </Menu>
-      </div>
+      <InnerWrapper>
+        <div>
+          <Link href='/'>
+            <a>
+              <svg width="40px" height="40px" viewBox="0 0 182.33 182.33"><path fill="none" stroke={heading} strokeMiterlimit="10" strokeWidth="12" d="M3.5 3.5h175.33v175.33H3.5z"></path><path d="M95.7 170.86l35.56-79.7 35.68 79.7h-16.05l-19.63-43.83-19.5 43.83z" fill={heading}></path></svg>
+            </a>
+          </Link>
+        </div>
+        <div>
+          <Menu>
+            { menuItems.map(item => (
+              <Link key={item.id} href={item.url}>
+                <a><li>{item.name}</li></a>
+              </Link>
+            ))}
+          </Menu>
+        </div>
+      </InnerWrapper>
     </StyledNav>
   )
 }
@@ -38,14 +40,23 @@ const Nav = (): JSX.Element => {
 const StyledNav = styled.nav`
   padding: 10px 10px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   font-family: ${({ theme }) => theme.fonts.secondary};
   color: ${({ theme }: { theme: TTheme }) => theme.colors.text};
   position: sticky;
   top: 0;
   background: ${({ theme }: { theme: TTheme }) => theme.colors.background};
   z-index: 10;
+`;
+
+
+const InnerWrapper = styled.div`
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* border: 1px solid black; */
+  width: 100%;
 `;
 
 const Menu = styled.ul`
