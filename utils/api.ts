@@ -12,3 +12,15 @@ export const getNotes = async (): Promise<any> => {
 export const getNote = (noteId: string): Promise<any> => {
   return axios.get<BlockMapType>(`${BASE_URL}/page/${noteId}`).then(response => response.data);
 }
+
+export const getPage = (pageId: string): Promise<any> => {
+  return axios.get<BlockMapType>(`${BASE_URL}/page/${pageId}`).then(response => response.data);
+}
+
+export const getTable = (tableId: string): Promise<any> => {
+  return axios.get<BlockMapType>(`${BASE_URL}/table/${tableId}`).then(response => response.data);
+}
+
+export const getHomePage = (): Promise<any> => {
+  return axios.get(`https://localhost:3000/api/home`).then(response => response.data);
+}

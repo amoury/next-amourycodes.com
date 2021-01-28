@@ -1,13 +1,19 @@
 import styled, { TTheme } from 'styled-components';
-import { NotionRenderer, BlockMapType } from 'react-notion'
+import { NotionRenderer, BlockMapType, BaseTextValueType } from 'react-notion'
 import Metadata from './Metadata';
 import { TPost } from 'types/post';
 import { rgba } from '@utils/helpers';
+import { slugifyTitle } from '@utils/helpers'
 
 type TProps = {
   title: string;
-  metadata: TPost;
+  metadata: TPost | null;
   notionBlocks: BlockMapType;
+}
+
+const renderSubtitle = (blockValue: BaseTextValueType) => {
+  const title = blockValue.properties?.title[0][0];
+  return (<h2 className="notion-h2" id={slugifyTitle(title)}>{title}</h2>)
 }
 
 const PostContent = ({ title, metadata, notionBlocks }: TProps): JSX.Element => {
@@ -17,7 +23,9 @@ const PostContent = ({ title, metadata, notionBlocks }: TProps): JSX.Element => 
       <MetaSection>
         {!!metadata && <Metadata data={metadata} />}
       </MetaSection>
-      <NotionRenderer blockMap={notionBlocks} />
+      <NotionRenderer blockMap={notionBlocks} customBlockComponents={{
+        sub_header: ({ blockValue }) => renderSubtitle(blockValue)
+      }} />
     </Content>
   )
 }
@@ -60,6 +68,22 @@ const Content = styled.article`
       font-size: 80px;
       line-height: 90px;
     } 
+  }
+
+  p.notion-text s {
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+
+    &:after {
+      position: absolute;
+      content: '';
+      width: 100%;
+      height: 30%;
+      left: 0;
+      bottom: 15%;
+      background: ${({ theme }: { theme: TTheme }) => rgba(theme.colors.highlight, '0.8')};
+    }
   }
 
   p.notion-text,

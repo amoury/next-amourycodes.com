@@ -1,12 +1,11 @@
 import slugify from 'slugify';
 
-export const getFormattedId = id => id.split('-').join('');
+export const getFormattedId = (id: string): string => id.split('-').join('');
 
-export const slugifyTitle = title => slugify(title).toLowerCase();
+export const slugifyTitle = (title: string): string => slugify(title).toLowerCase();
 
-export const formatUrl = (title: string, id: string) => {
-  return `${slugifyTitle(title)}/${getFormattedId(id)}`;
-}
+export const formatUrl = (title: string, id: string): string => (`${slugifyTitle(title)}/${getFormattedId(id)}`);
+
 
 
 const hexToRgb = (hex) => {
@@ -24,7 +23,7 @@ const hexToRgb = (hex) => {
   } : null;
 };
 
-export const rgba = (hex, alpha) => {
+export const rgba = (hex: string, alpha: string): string => {
   const color = hexToRgb(hex);
   return `rgba(${color.r}, ${color.g}, ${color.b}, ${alpha})`;
 };

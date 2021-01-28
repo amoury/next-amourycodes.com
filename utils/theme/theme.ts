@@ -6,7 +6,8 @@ const lightTheme = {
     secondary: '#F6EEE3',
     text: '#334259',
     heading: '#233143',
-    background: '#F1F1F1'
+    background: '#F1F1F1',
+    highlight: '#FFFF00',
   }
 }
 
@@ -16,6 +17,7 @@ const darkTheme = {
     secondary: '#0B2027',
     text: '#F6F1D1',
     heading: '#F6F1D1',
+    highlight: '#FFFF00',
   }
 }
 
@@ -31,6 +33,7 @@ const theme: TTheme = {
     text: '#334259',
     heading: '#233143',
     background: '#F1F1F1',
+    highlight: '#FFFF00',
   }
 }
 
