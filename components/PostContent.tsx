@@ -31,8 +31,8 @@ const PostContent = ({ title, metadata, notionBlocks }: TProps): JSX.Element => 
 }
 
 const MetaSection = styled.div`
-  border-top: 1px solid ${({ theme }: { theme: TTheme }) => rgba(theme.colors.text, 0.5)};
-  border-bottom: 1px solid ${({ theme }: { theme: TTheme }) => rgba(theme.colors.text, 0.5)};
+  border-top: 1px solid ${({ theme }: { theme: TTheme }) => rgba(theme.colors.text, '0.5')};
+  border-bottom: 1px solid ${({ theme }: { theme: TTheme }) => rgba(theme.colors.text, '0.5')};
   padding: 20px 0;
   max-width: 500px;
   margin: 50px auto;

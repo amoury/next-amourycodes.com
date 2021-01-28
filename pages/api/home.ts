@@ -8,8 +8,9 @@ export default async function home(req: NextApiRequest, res: NextApiResponse): P
 }
 
 export const getHomePage = async (): Promise<any> => {
-  const { introId, guidesTable } = config;
+  const { introId, guidesTable, notesTable } = config;
   const introBlocks = await getPage(introId);
   const guidesTableBlocks = await getTable(guidesTable);
-  return { intro: introBlocks, guides: guidesTableBlocks }
+  const notesTableBlocks = await getTable(notesTable)
+  return { intro: introBlocks, guides: guidesTableBlocks, notes: notesTableBlocks }
 }

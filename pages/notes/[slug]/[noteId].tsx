@@ -1,16 +1,16 @@
 import { useEffect } from 'react';
 import { NextSeo } from 'next-seo';
+import { getNote, getNotes } from '../../api/notes-svc';
 import { useRouter } from 'next/router';
-import { getNote, getNotes } from '@utils/api';
 import { getFormattedId, slugifyTitle } from '@utils/helpers';
-import { useQuery } from 'react-query';
+import { useQuery, QueryClient } from 'react-query';
+import { dehydrate } from 'react-query/hydration'
 import PostContent from '@components/PostContent';
-import { BlockMapType } from 'react-notion';
 
-const Note = ({ note }: { note: BlockMapType}): JSX.Element => {
-  if(!note) return null;
+const Note = (): JSX.Element => {
   const { data } = useQuery('notes', getNotes);
   const { query } = useRouter();
+  const { data: note } = useQuery(['note', query.noteId], () => getNote(query.noteId as string));
 
   const title = note[Object.keys(note)[0]]?.value.properties.title[0][0];
   const metadata = !!data && data.filter(item => getFormattedId(item.id) === query.noteId)[0];
@@ -29,17 +29,20 @@ const Note = ({ note }: { note: BlockMapType}): JSX.Element => {
 
 
 
-export async function getStaticPaths() {
+export async function getStaticPaths(): Promise<any> {
   const notes = await getNotes();
   const paths = notes.map(note => ({ params: { slug: slugifyTitle(note.title), noteId: getFormattedId(note.id) }}));
   return { paths, fallback: false }
 }
 
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params }): Promise<any> {
   const { noteId } = params;
-  const note = await getNote(noteId);
-  return { props: { note }, revalidate: 1 }
+
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery(['note', noteId], () => getNote(noteId));
+
+  return { props: { dehydratedState: dehydrate(queryClient) } };
 }
 
 export default Note;

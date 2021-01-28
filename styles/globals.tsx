@@ -8,18 +8,21 @@ const GlobalStyle = createGlobalStyle`
     src: url(/assets/fonts/MaisonNeue-Bold.woff2) format("woff2"),url(/assets/fonts/MaisonNeue-Bold.woff) format("woff");
     font-weight: 700;
     font-style: bold;
+    font-display: swap;
   }
   @font-face {
     font-family: Merriweather-Regular;
     src: url(/assets/fonts/Merriweather-Regular.ttf) format("truetype");
     font-weight: 400;
     font-style: normal;
+    font-display: swap;
   }
   @font-face {
     font-family: FrieghtSans-Regular;
     src: url(/assets/fonts/FreightSans-Book.otf) format("opentype");
     font-weight: 400;
     font-style: normal;
+    font-display: swap;
   }
 
   html,

@@ -23,9 +23,9 @@ const darkTheme = {
 
 const theme: TTheme = {
   fonts: {
-    heading: 'MaisonNeue-Bold',
-    text: 'Merriweather-Regular',
-    secondary: 'FrieghtSans-Regular',
+    heading: `'MaisonNeue-Bold', sans-serif`,
+    text: `'Merriweather-Regular', serif`,
+    secondary: `'FrieghtSans-Regular', sans-serif`,
   },
   colors: {
     primary: '#E63A2D',

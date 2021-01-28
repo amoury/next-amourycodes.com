@@ -38,7 +38,7 @@ const TagsList = styled.div`
 `;
 
 const Tag = styled.span`
-  background-color: ${({ theme }: { theme: TTheme }) => `${rgba(theme.colors.text, 0.7)}`};
+  background-color: ${({ theme }: { theme: TTheme }) => `${rgba(theme.colors.text, '0.7')}`};
   color: ${({ theme }: { theme: TTheme }) => theme.colors.secondary};
   padding: 6px 10px 5px;
   display: inline-block;
