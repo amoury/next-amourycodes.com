@@ -45,11 +45,13 @@ const Home = (): JSX.Element => {
             <Notes>
               <NotesList>
                 {Boolean(notes.length) && notes.map(note => (
-                  <Link key={note.id} href={`/notes/${formatUrl(note.title, note.id)}`}>
-                    <a>
-                      <ListItem><h4>{note.title}</h4></ListItem>
-                    </a>
-                  </Link> 
+                  <ListItem key={note.id}>
+                    <Link href={`/notes/${formatUrl(note.title, note.id)}`}>
+                      <a>
+                        <h4>{note.title}</h4>
+                      </a>
+                    </Link> 
+                  </ListItem>
                 ))}
               </NotesList>
             </Notes>

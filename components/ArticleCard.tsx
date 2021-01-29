@@ -22,6 +22,7 @@ const ArticleCard = ({ article }: IProps): JSX.Element => {
             width="500px"
             height="300px"
             layout="responsive"
+            alt={article.title}
           />
         }
       </ImageWrapper>
