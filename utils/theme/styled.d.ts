@@ -13,6 +13,7 @@ type TColors = {
   heading: string;
   background: string;
   highlight: string;
+  link: string;
 }
 
 declare module 'styled-components' {

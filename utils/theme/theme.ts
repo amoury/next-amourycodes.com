@@ -34,6 +34,7 @@ const theme: TTheme = {
     heading: '#233143',
     background: '#F1F1F1',
     highlight: '#FFFF00',
+    link: '#0018ff'
   }
 }
 

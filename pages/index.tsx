@@ -41,7 +41,7 @@ const Home = (): JSX.Element => {
 
           <div>
             <TeaserTitle>Notes</TeaserTitle>
-            <p>These are half-baked notes from my learnings and research.</p>
+            <TeaserDescription>These are half-baked notes from my learnings and research.</TeaserDescription>
             <Notes>
               <NotesList>
                 {Boolean(notes.length) && notes.map(note => (
@@ -72,21 +72,35 @@ const HeroSection = styled.section`
   align-items: center;
   
   @media (min-width: 1024px) {
-    max-height: 80vh;
+    max-height: 90vh;
+    height: 90vh;
   }
 `
 
 const Guides = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-column-gap: 5px;
+  grid-template-columns: auto;
   grid-auto-flow: dense;
+  grid-row-gap: 30px;
+  justify-content: center;
+  
+  @media (min-width: 595px) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 30px;
+  }
+`;
+
+const TeaserDescription = styled.div`
+  font-family: ${({ theme }) => theme.fonts.secondary};
+  color: ${({ theme }) => theme.colors.text}; 
+  font-size: 22px;
 `;
 
 const Notes = styled.div`
   background-color: #FFF;
   padding: 20px 5px;
   border-radius: 10px;
+  margin-top: 20px;
 `;
 
 const NotesList = styled.ol`
@@ -112,6 +126,10 @@ const ListItem = styled.li`
     line-height: 1;
   }
 
+  &:hover {
+    color: ${({ theme }) => theme.colors.link};
+  }
+
   h4 {
     font-size: 19px;
   }
@@ -121,14 +139,16 @@ const TeasersSection = styled.section`
   display: grid;
   grid-column-gap: 50px;
   
-  @media (min-width: 1024px) {
+  @media (min-width: 800px) {
     grid-template-columns: 60% auto;    
   }
 `;
 
 const TeaserTitle = styled.h3`
-  font-family: ${({ theme }) => theme.fonts.heading};
+  font-family: ${({ theme }) => theme.fonts.secondary};
   margin-bottom: 25px;
+  font-size: 40px;
+  font-weight: normal;
 `;
 
 export async function getStaticProps() {

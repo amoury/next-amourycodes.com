@@ -15,10 +15,6 @@ const Note = (): JSX.Element => {
   const title = note[Object.keys(note)[0]]?.value.properties.title[0][0];
   const metadata = !!data && data.filter(item => getFormattedId(item.id) === query.noteId)[0];
 
-  // useEffect(() => {
-  //   console.log(window.matchMedia('(prefers-color-scheme: dark)'));
-  // }, [])
-
   return (
     <div>
       <NextSeo title={`${title} | Amourycodes`} />
@@ -32,7 +28,7 @@ const Note = (): JSX.Element => {
 export async function getStaticPaths(): Promise<any> {
   const notes = await getNotes();
   const paths = notes.map(note => ({ params: { slug: slugifyTitle(note.title), noteId: getFormattedId(note.id) }}));
-  return { paths, fallback: false }
+  return { paths, fallback: 'blocking' }
 }
 
 

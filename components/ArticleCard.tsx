@@ -30,6 +30,13 @@ const ArticleCard = ({ article }: IProps): JSX.Element => {
   )
 }
 
+const Title = styled.h4`
+  font-family: ${({ theme }: { theme: TTheme }) => theme.fonts.heading};
+  color: ${({ theme }: { theme: TTheme }) => theme.colors.text};
+  line-height: 25px;
+  font-size: 19px;
+  transition: color 0.2s ease-in;
+`;
 
 const Card = styled.article`
   border-radius: 15px;
@@ -42,14 +49,11 @@ const Card = styled.article`
   
   &:hover {
     box-shadow: 24px 24px 48px #cdcdcd, -24px -24px 48px #ffffff;
-  }
-`;
 
-const Title = styled.h4`
-  font-family: ${({ theme }: { theme: TTheme }) => theme.fonts.heading};
-  color: ${({ theme }: { theme: TTheme }) => theme.colors.text};
-  line-height: 25px;
-  font-size: 19px;
+    ${Title} {
+      color: ${({ theme }) => theme.colors.link};
+    }
+  }
 `;
 
 const ImageWrapper = styled.div`

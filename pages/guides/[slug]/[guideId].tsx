@@ -1,23 +1,18 @@
-import { useEffect } from 'react';
 import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
-import { getNotes, getPage } from '@utils/api';
+import { getGuides, getGuide } from '../../api/guides-svc';
 import { getFormattedId, slugifyTitle } from '@utils/helpers';
-import { useQuery } from 'react-query';
+import { useQuery, QueryClient } from 'react-query';
+import { dehydrate } from 'react-query/hydration'
 import PostContent from '@components/PostContent';
-import { BlockMapType } from 'react-notion';
 
-const Guide = ({ guide }: { guide: BlockMapType}): JSX.Element => {
-  if(!guide) return null;
-  const { data } = useQuery('notes', getNotes);
+const Guide = (): JSX.Element => {
+  const { data } = useQuery('notes', getGuides);
   const { query } = useRouter();
+  const { data : guide } = useQuery(['guide', query.guideId], () => getGuide(query.guideId as string));
 
   const title = guide[Object.keys(guide)[0]]?.value.properties.title[0][0];
   const metadata = !!data && data.filter(item => getFormattedId(item.id) === query.guideId)[0];
-
-  // useEffect(() => {
-  //   console.log(window.matchMedia('(prefers-color-scheme: dark)'));
-  // }, [])
 
   return (
     <div>
@@ -30,16 +25,17 @@ const Guide = ({ guide }: { guide: BlockMapType}): JSX.Element => {
 
 
 export async function getStaticPaths() {
-  const notes = await getNotes();
-  const paths = notes.map(note => ({ params: { slug: slugifyTitle(note.title), guideId: getFormattedId(note.id) }}));
-  return { paths, fallback: false }
+  const guides = await getGuides();
+  const paths = guides.map(guide => ({ params: { slug: slugifyTitle(guide.title), guideId: getFormattedId(guide.id) }}));
+  return { paths, fallback: 'blocking' }
 }
 
 
 export async function getStaticProps({ params }) {
   const { guideId } = params;
-  const guide = await getPage(guideId);
-  return { props: { guide }, revalidate: 1 }
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery(['guide', guideId], () => getGuide(guideId));
+  return { props: { dehydratedState: dehydrate(queryClient) } };
 }
 
 export default Guide;
