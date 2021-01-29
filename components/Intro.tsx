@@ -40,6 +40,10 @@ const SIntro = styled.div`
       font-size: 20px;
     }
   }
+
+  a.notion-link {
+    ${({ theme }) => theme.isDarkMode && `color: ${theme.colors.primary}`};
+  }
 `;
 
 export default Intro

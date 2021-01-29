@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import theme from '@utils/theme';
 import { ThemeProvider } from 'styled-components';
 import { QueryClientProvider, QueryClient } from 'react-query';
@@ -11,12 +12,18 @@ const queryClient = new QueryClient();
 
 
 function MyApp({ Component, pageProps }): JSX.Element {
+  const [isDarkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    window.matchMedia('(prefers-color-scheme: dark)') ? setDarkMode(true) : setDarkMode(false);
+  }, []);
+
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme(isDarkMode)}>
         <QueryClientProvider client={queryClient}>
           <Hydrate state={pageProps.dehydratedState}>
             <GlobalStyle />
-            <Nav />          
+            <Nav toggleDarkMode={setDarkMode} />          
             <Component {...pageProps} />
           </Hydrate>
           <ReactQueryDevtools initialIsOpen={false} />

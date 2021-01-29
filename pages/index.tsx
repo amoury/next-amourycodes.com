@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import styled from 'styled-components';
+import styled, { TTheme } from 'styled-components';
 import { getHomePage } from './api/home';
 import { QueryClient, useQuery } from 'react-query';
 import { dehydrate } from 'react-query/hydration';
@@ -41,7 +41,7 @@ const Home = (): JSX.Element => {
 
           <div>
             <TeaserTitle>Notes</TeaserTitle>
-            <TeaserDescription>These are half-baked notes from my learnings and research.</TeaserDescription>
+            <TeaserDescription>These are half-baked notes from my daily learnings and research.</TeaserDescription>
             <Notes>
               <NotesList>
                 {Boolean(notes.length) && notes.map(note => (
@@ -97,7 +97,7 @@ const TeaserDescription = styled.div`
 `;
 
 const Notes = styled.div`
-  background-color: #FFF;
+  background-color: ${({ theme }) => theme.isDarkMode ? theme.colors.background : '#FFF' };
   padding: 20px 5px;
   border-radius: 10px;
   margin-top: 20px;
@@ -149,6 +149,7 @@ const TeaserTitle = styled.h3`
   margin-bottom: 25px;
   font-size: 40px;
   font-weight: normal;
+  color: ${({ theme }: { theme: TTheme }) => theme.isDarkMode ? theme.colors.primary : theme.colors.text }
 `;
 
 export async function getServerSideProps() {

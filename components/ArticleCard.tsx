@@ -41,14 +41,14 @@ const Title = styled.h4`
 const Card = styled.article`
   border-radius: 15px;
   background: ${({ theme }) => theme.colors.background};
-  box-shadow: 15px 15px 30px #d6d6d6, -15px -15px 30px #ffffff;
+  box-shadow: ${({ theme }) => theme.isDarkMode? `15px 15px 30px #091b21, -15px -15px 30px #0d252d;`: `15px 15px 30px #d6d6d6, -15px -15px 30px #ffffff`};
   overflow: hidden;
   padding: 20px;
   transition: all 0.4s ease-in-out;
   max-width: 320px;
   
   &:hover {
-    box-shadow: 24px 24px 48px #cdcdcd, -24px -24px 48px #ffffff;
+    box-shadow: ${({ theme }: { theme: TTheme }) => theme.isDarkMode ? '24px 24px 48px #091b21, -24px -24px 48px #0d252d' : '24px 24px 48px #cdcdcd, -24px -24px 48px #ffffff' };
 
     ${Title} {
       color: ${({ theme }) => theme.colors.link};
