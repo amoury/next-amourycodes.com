@@ -16,7 +16,7 @@ const Home = (): JSX.Element => {
   return (
     <div>
       <Head>
-        <title>Create Next Home</title>
+        <title>Amoury | Full stack software engineer</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
@@ -106,7 +106,7 @@ const Notes = styled.div`
 const NotesList = styled.ol`
   list-style: none;
   counter-reset: my-counter;
-
+  padding: 0 20px;
 `;
 
 const ListItem = styled.li`
@@ -151,7 +151,7 @@ const TeaserTitle = styled.h3`
   font-weight: normal;
 `;
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery('home', getHomePage);
 
