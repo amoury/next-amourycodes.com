@@ -3,24 +3,24 @@ import { QueryClient, useQuery } from 'react-query';
 import { dehydrate } from 'react-query/hydration'
 import { NotionRenderer } from 'react-notion';
 import styled, { TTheme } from 'styled-components';
-import { getNotesPage } from '@utils/api';
+import { getGuidesPage } from '@utils/api';
 import ArticleList from '@components/ArticleList';
 
-const NotesPage = (): JSX.Element => {
-  const { data } = useQuery('notesPage', getNotesPage);
-  const { notesPage, notes } = data;
+const GuidesPage = (): JSX.Element => {
+  const { data } = useQuery('guidesPage', getGuidesPage);
+  const { guidesPage, guides } = data;
   return (
     <>
       <NextSeo
-        title="Notes | Amourycodes"
+        title="Guides | Amourycodes"
         description="Half-baked notes from my learnings and research as a software engineer"
       />
       <Content>
         <HeroSection>
-          <NotionRenderer blockMap={notesPage} />
+          <NotionRenderer blockMap={guidesPage} />
         </HeroSection>
 
-        <ArticleList articles={notes} type="notes" />
+        <ArticleList articles={guides} type="guides" />
       </Content>
     </>
   )
@@ -54,8 +54,8 @@ const HeroSection = styled.section`
 
 export async function getServerSideProps() {
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery('notesPage', getNotesPage);
+  await queryClient.prefetchQuery('guidesPage', getGuidesPage);
   return { props: { dehydratedState: dehydrate(queryClient) }}
 }
 
-export default NotesPage
+export default GuidesPage

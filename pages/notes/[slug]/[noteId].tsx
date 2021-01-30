@@ -1,6 +1,5 @@
-import { useEffect } from 'react';
 import { NextSeo } from 'next-seo';
-import { getNote, getNotes } from '../../api/notes-svc';
+import { getNote, getNotes } from '@utils/api';
 import { useRouter } from 'next/router';
 import { getFormattedId, slugifyTitle } from '@utils/helpers';
 import { useQuery, QueryClient } from 'react-query';
