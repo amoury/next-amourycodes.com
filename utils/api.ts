@@ -55,3 +55,8 @@ export const getGuide = async (guideId: string): Promise<any> => {
   const guide = await getPage(guideId);
   return guide;
 }
+
+export const getAboutPage = async (): Promise<any> => {
+  const aboutPage = await getPage(config.aboutPageId);
+  return aboutPage;
+}

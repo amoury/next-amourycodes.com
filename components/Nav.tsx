@@ -9,7 +9,8 @@ interface IProps {
 
 const menuItems = [
   { id: 1, url: '/notes', name: 'Notes' },
-  { id: 2, url: '/guides', name: 'Guides' }
+  { id: 2, url: '/guides', name: 'Guides' },
+  { id: 3, url: '/about', name: 'About' },
 ];
 
 const Nav = ({ toggleDarkMode } : IProps): JSX.Element => {

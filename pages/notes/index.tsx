@@ -17,7 +17,9 @@ const NotesPage = (): JSX.Element => {
       />
       <Content>
         <HeroSection>
-          <NotionRenderer blockMap={notesPage} />
+          <NotionRenderer blockMap={notesPage} customBlockComponents={{
+            collection_view: () => null
+          }} />
         </HeroSection>
 
         <ArticleList articles={notes} type="notes" />
