@@ -8,13 +8,13 @@ const About = () => {
   const { data } = useQuery('aboutPage', getAboutPage);
   if (!data) return <div>Loading...</div>;
   return (
-    <Content>
+    <Content className="content about-page">
       <NotionRenderer blockMap={data} />
     </Content>
   )
 }
 
-const Content = styled.div`
+const Content = styled.article`
   max-width: 1200px;
   padding: 0 10px;
   
@@ -22,22 +22,10 @@ const Content = styled.div`
     margin: 0 auto;
   }
 
-  h1.notion-h1,
-  h2.notion-h2 {
-    font-family: ${({ theme }: { theme: TTheme }) => theme.fonts.secondary};
-    color: ${({ theme }: { theme: TTheme }) => theme.colors.text};
-    font-size: 40px;
-  }
-
-  h2.notion-h2 {
-    font-size: 30px;
-    letter-spacing: 0.2px;
-  }
-  
-  p.notion-text {
-    font-family: ${({ theme }: { theme: TTheme }) => theme.fonts.text};
-    color: ${({ theme }: { theme: TTheme }) => theme.colors.text};
-    font-size: 20px;
+  &.about-page {
+    h1.notion-h1 {
+      text-align: left;
+    }
   }
 `;
 

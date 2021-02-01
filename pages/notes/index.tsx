@@ -16,7 +16,7 @@ const NotesPage = (): JSX.Element => {
         description="Half-baked notes from my learnings and research as a software engineer"
       />
       <Content>
-        <HeroSection>
+        <HeroSection className="hero-section">
           <NotionRenderer blockMap={notesPage} customBlockComponents={{
             collection_view: () => null
           }} />
@@ -37,22 +37,7 @@ const Content = styled.div`
   }
 `;
 
-const HeroSection = styled.section`
-  display: flex;
-  align-items: center;
-
-  h1.notion-h1 {
-    font-family: ${({ theme }: { theme: TTheme }) => theme.fonts.secondary};
-    color: ${({ theme }: { theme: TTheme }) => theme.colors.text};
-    font-size: 40px;
-  }
-  
-  p.notion-text {
-    font-family: ${({ theme }: { theme: TTheme }) => theme.fonts.text};
-    color: ${({ theme }: { theme: TTheme }) => theme.colors.text};
-    font-size: 20px;
-  }
-`
+const HeroSection = styled.section``;
 
 export async function getServerSideProps() {
   const queryClient = new QueryClient();
