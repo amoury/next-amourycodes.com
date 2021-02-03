@@ -28,10 +28,23 @@ export default class MyDocument extends Document {
     }
   }
 
+  
   render() {
+    const ANALYTICS_TAG = process.env.NEXT_PUBLIC_ANALYTICS_ID;
     return (
       <Html lang="en">
-        <Head />
+        <Head>
+          <script async src={`https://www.googletagmanager.com/gtag/js?id=${ANALYTICS_TAG}`}></script>
+          <script dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+            
+              gtag('config', '${ANALYTICS_TAG}');
+            `
+          }} />
+        </Head>
         <body>
           <Main />
           <NextScript />
