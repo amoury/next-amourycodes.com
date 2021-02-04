@@ -17,7 +17,9 @@ const GuidesPage = (): JSX.Element => {
       />
       <Content>
         <HeroSection className="hero-section">
-          <NotionRenderer blockMap={guidesPage} />
+          <NotionRenderer blockMap={guidesPage} customBlockComponents={{
+            collection_view: () => null
+          }} />
         </HeroSection>
 
         <ArticleList articles={guides} type="guides" />
