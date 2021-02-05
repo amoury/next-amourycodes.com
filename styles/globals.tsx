@@ -89,11 +89,11 @@ const GlobalStyle = createGlobalStyle`
     }
 
     p.notion-text,
-    blockquote.notion-quote {
+    blockquote.notion-quote,
+    ul.notion-list li {
       font-family: ${({ theme }) => theme.fonts.text };
       font-size: 16px;
-      line-height: 38px;
-      margin-bottom: 22px;
+      line-height: 33px;
       letter-spacing: 0.25px;
       color: ${({ theme }) => theme.colors.text};
 
@@ -111,6 +111,7 @@ const GlobalStyle = createGlobalStyle`
     blockquote.notion-quote {
       background: ${({ theme }: { theme: TTheme }) => theme.colors.secondary};
       border-radius: 4px;
+      margin-bottom: 22px;
     }
 
     h2.notion-h2 {

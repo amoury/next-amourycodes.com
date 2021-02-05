@@ -2,7 +2,7 @@ import { NextSeo } from 'next-seo';
 import { QueryClient, useQuery } from 'react-query';
 import { dehydrate } from 'react-query/hydration'
 import { NotionRenderer } from 'react-notion';
-import styled, { TTheme } from 'styled-components';
+import styled from 'styled-components';
 import { getNotesPage } from '@utils/api';
 import ArticleList from '@components/ArticleList';
 

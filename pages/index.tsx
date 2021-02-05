@@ -4,6 +4,7 @@ import { getHomePage } from '@utils/api';
 import { QueryClient, useQuery } from 'react-query';
 import { dehydrate } from 'react-query/hydration';
 import { formatUrl } from '@utils/helpers';
+import { NextSeo } from 'next-seo'
 
 import Link from 'next/link';
 import Intro from '@components/Intro';
@@ -17,7 +18,10 @@ const Home = (): JSX.Element => {
   return (
     <div>
       <Head>
-        <title>Amoury | Full stack software engineer</title>
+        <NextSeo 
+          title="Amoury | Frontend Engineer based in Dubai"  
+          description="A software engineer who loves learning in public and sharing what he learns"
+        />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 

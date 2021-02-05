@@ -1,23 +1,22 @@
 import { NextSeo } from 'next-seo';
 import { getNote, getNotes } from '@utils/api';
 import { useRouter } from 'next/router';
-import { getFormattedId, slugifyTitle } from '@utils/helpers';
+import { getFormattedId, slugifyTitle, getFormattedMetaData } from '@utils/helpers';
 import { useQuery, QueryClient } from 'react-query';
 import { dehydrate } from 'react-query/hydration'
+import { BlockMapType } from 'react-notion';
 import PostContent from '@components/PostContent';
 
 const Note = (): JSX.Element => {
-  const { data } = useQuery('notes', getNotes);
   const { query } = useRouter();
-  const { data: note } = useQuery(['note', query.noteId], () => getNote(query.noteId as string));
+  const { data: note }: { data: BlockMapType } = useQuery(['note', query.noteId], () => getNote(query.noteId as string));
 
-  const title = note[Object.keys(note)[0]]?.value.properties.title[0][0];
-  const metadata = !!data && data.filter(item => getFormattedId(item.id) === query.noteId)[0];
+  const metadata = getFormattedMetaData(note);
 
   return (
     <div>
-      <NextSeo title={`${title} | Amourycodes`} />
-      <PostContent title={title} metadata={metadata} notionBlocks={note} />
+      <NextSeo title={`${metadata.title} | Amourycodes`} />
+      <PostContent title={metadata.title} metadata={metadata} notionBlocks={note} />
     </div>
   )
 }

@@ -1,4 +1,7 @@
+import { TPost } from 'types/post';
 import slugify from 'slugify';
+import { BlockMapType } from 'react-notion';
+import _get from 'lodash/get';
 
 export const getFormattedId = (id: string): string => id.split('-').join('');
 
@@ -26,4 +29,20 @@ const hexToRgb = (hex) => {
 export const rgba = (hex: string, alpha: string): string => {
   const color = hexToRgb(hex);
   return `rgba(${color.r}, ${color.g}, ${color.b}, ${alpha})`;
+};
+
+export const getFormattedMetaData = (note: BlockMapType): TPost | null => {
+  const blockWithCollection = Object.values(note).filter(block => block.hasOwnProperty('collection'));
+  if (!blockWithCollection.length) return;
+  const collectionData: Array<TPost> =  _get(blockWithCollection[0],'collection.data');
+  const { id, status, tags, title: newTitle, createdAt } = collectionData[0];
+  const tagsList = _get(tags, '0.0', '');
+
+  return ({ 
+    tags: tagsList?.split(','), 
+    title: _get(newTitle, '0.0'), 
+    status: _get(status, '0.0', 'draft'), 
+    id, 
+    createdAt: _get(createdAt, '0.1.0.1.start_date', new Date()) 
+  });
 };
