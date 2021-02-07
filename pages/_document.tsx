@@ -34,6 +34,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
+          <link rel="stylesheet" href="/assets/fonts/fonts.css"/>
           <script async src={`https://www.googletagmanager.com/gtag/js?id=${ANALYTICS_TAG}`}></script>
           <script dangerouslySetInnerHTML={{
             __html: `
