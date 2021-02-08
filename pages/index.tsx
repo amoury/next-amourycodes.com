@@ -17,13 +17,10 @@ const Home = (): JSX.Element => {
   const { guides, intro, notes } = data;
   return (
     <div>
-      <Head>
-        <NextSeo 
-          title="Amoury | Frontend Engineer based in Dubai"  
-          description="A software engineer who loves learning in public and sharing what he learns"
-        />
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      </Head>
+      <NextSeo 
+        title="Amoury | Frontend Engineer based in Dubai"  
+        description="A software engineer who loves learning in public and sharing what he learns"
+      />
 
       <Main>
         <HeroSection>
