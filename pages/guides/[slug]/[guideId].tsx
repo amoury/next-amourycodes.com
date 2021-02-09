@@ -10,7 +10,7 @@ const Guide = (): JSX.Element => {
   const { query } = useRouter();
   const { data : guide } = useQuery(['guide', query.guideId], () => getGuide(query.guideId as string));
 
-  const metadata = getFormattedMetaData(guide);
+  const metadata = getFormattedMetaData(guide, query.guideId as string);
 
   return (
     <div>

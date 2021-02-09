@@ -10,8 +10,9 @@ import PostContent from '@components/PostContent';
 const Note = (): JSX.Element => {
   const { query } = useRouter();
   const { data: note }: { data: BlockMapType } = useQuery(['note', query.noteId], () => getNote(query.noteId as string));
+  console.log(note);
 
-  const metadata = getFormattedMetaData(note);
+  const metadata = getFormattedMetaData(note, query.noteId as string);
 
   return (
     <div>

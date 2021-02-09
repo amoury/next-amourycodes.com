@@ -31,10 +31,11 @@ export const rgba = (hex: string, alpha: string): string => {
   return `rgba(${color.r}, ${color.g}, ${color.b}, ${alpha})`;
 };
 
-export const getFormattedMetaData = (note: BlockMapType): TPost | null => {
+export const getFormattedMetaData = (note: BlockMapType, noteId: string): TPost | null => {
   const blockWithCollection = Object.values(note).filter(block => block.hasOwnProperty('collection'));
   if (!blockWithCollection.length) return;
-  const collectionData: Array<TPost> =  _get(blockWithCollection[0],'collection.data');
+  let collectionData: Array<TPost> =  _get(blockWithCollection[0],'collection.data');
+  collectionData = collectionData.filter(coll => getFormattedId(coll.id) === noteId);
   const { id, status, tags, title: newTitle, createdAt } = collectionData[0];
   const tagsList = _get(tags, '0.0', '');
 
