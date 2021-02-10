@@ -15,7 +15,7 @@ const Note = (): JSX.Element => {
 
   return (
     <div>
-      <NextSeo title={`${metadata.title} | Amourycodes`} description={metadata.description} />
+      <NextSeo title={`${metadata.title} | Amourycodes`} description={metadata.tagline} />
       <PostContent title={metadata.title} metadata={metadata} notionBlocks={note} />
     </div>
   )

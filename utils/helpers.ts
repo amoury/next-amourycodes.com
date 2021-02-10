@@ -44,7 +44,7 @@ export const getFormattedMetaData = (note: BlockMapType, noteId: string): TPost 
     tags: tagsList?.split(','), 
     title, 
     status: _get(status, '0.0', 'draft'), 
-    description: _get(tagline, '0.0', `Short article about ${title.toLowerCase()}`),
+    tagline: _get(tagline, '0.0', `Short article about ${title.toLowerCase()}`),
     id, 
     createdAt: _get(createdAt, '0.1.0.1.start_date', new Date()) 
   });
