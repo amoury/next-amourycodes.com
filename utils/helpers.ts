@@ -36,13 +36,15 @@ export const getFormattedMetaData = (note: BlockMapType, noteId: string): TPost 
   if (!blockWithCollection.length) return;
   let collectionData: Array<TPost> =  _get(blockWithCollection[0],'collection.data');
   collectionData = collectionData.filter(coll => getFormattedId(coll.id) === noteId);
-  const { id, status, tags, title: newTitle, createdAt } = collectionData[0];
+  const { id, status, tags, title: newTitle, createdAt, tagline } = collectionData[0];
   const tagsList = _get(tags, '0.0', '');
+  const title = _get(newTitle, '0.0');
 
   return ({ 
     tags: tagsList?.split(','), 
-    title: _get(newTitle, '0.0'), 
+    title, 
     status: _get(status, '0.0', 'draft'), 
+    description: _get(tagline, '0.0', `Short article about ${title.toLowerCase()}`),
     id, 
     createdAt: _get(createdAt, '0.1.0.1.start_date', new Date()) 
   });

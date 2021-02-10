@@ -14,7 +14,7 @@ const Guide = (): JSX.Element => {
 
   return (
     <div>
-      <NextSeo title={`${metadata.title} | Amourycodes`} />
+      <NextSeo title={`${metadata.title} | Amourycodes`} description={metadata.description} />
       <PostContent title={metadata.title} metadata={metadata} notionBlocks={guide} />
     </div>
   )

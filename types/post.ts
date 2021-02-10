@@ -4,4 +4,5 @@ export type TPost = {
   status: 'published' | 'draft'
   tags: string[];
   title: string;
+  description: string;
 };
